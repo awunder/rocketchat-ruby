@@ -72,6 +72,40 @@ module RocketChat
         response['groups'].map { |hash| RocketChat::Room.new hash } if response['success']
       end
 
+
+      #
+      # *.invite REST API
+      # @param [String] room_id Rocket.Chat room id
+      # @param [String] leader Rocket.Chat user id
+      # @return [Boolean]
+      # @raise [HTTPError, StatusError]
+      #
+      def invite(room_id: nil, name: nil, user_id: nil, username: nil)
+        session.request_json(
+            self.class.api_path('invite'),
+            method: :post,
+            body: room_params(room_id, name)
+                      .merge(user_params(user_id, username))
+        )['success']
+      end
+
+      #
+      # *.kick REST API
+      # @param [String] room_id Rocket.Chat room id
+      # @param [String] leader Rocket.Chat user id
+      # @return [Boolean]
+      # @raise [HTTPError, StatusError]
+      #
+      def kick(room_id: nil, name: nil, user_id: nil, username: nil)
+        session.request_json(
+            self.class.api_path('kick'),
+            method: :post,
+            body: room_params(room_id, name)
+                      .merge(user_params(user_id, username))
+        )['success']
+      end
+
+
       # Keys for set_attr:
       # * [String] description A room's description
       # * [String] purpose Alias for description
