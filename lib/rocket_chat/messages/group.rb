@@ -65,7 +65,7 @@ module RocketChat
       #
       def listAll(offset: nil, count: nil, sort: nil, fields: nil, query: nil)
         response = session.request_json(
-            '/api/v1/groups.list',
+            '/api/v1/groups.listAll',
             body: build_list_body(offset, count, sort, fields, query)
         )
 
