@@ -1,7 +1,7 @@
 module RocketChat
   module Messages
     #
-    # Rocket.Chat User messages
+    # Rocket.Chat Role messages
     #
     class Role
       include ListSupport
