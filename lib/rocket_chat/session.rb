@@ -62,6 +62,10 @@ module RocketChat
       @im ||= RocketChat::Messages::Im.new(self)
     end
 
+    def roles
+      @settings ||= RocketChat::Messages::Role.new(self)
+    end
+
     #
     # Settings messages proxy
     # @return [Messages::Settings]
