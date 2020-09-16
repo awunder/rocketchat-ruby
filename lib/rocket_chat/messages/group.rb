@@ -105,6 +105,15 @@ module RocketChat
         )['success']
       end
 
+      
+      def members(room_id: nil, name: nil)
+        response = session.request_json(
+            '/api/v1/groups.members',
+            body: room_params(room_id, name),
+        )
+        puts response
+        response['members'].map { |hash| RocketChat::Room.new hash } if response['success']
+      end
 
       # Keys for set_attr:
       # * [String] description A room's description
